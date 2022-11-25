@@ -139,7 +139,7 @@
       # don't ignore commands starting with space
       ignoreSpace = false;
 
-      path = "${config.xdg.dataHome}/zsh/zsh_history";	# HISTFILE
+      path = ".zsh_history";	# relative to $HOME
 
       save = 10000000;	# SAVEHIST
       size = 10000000;	# HISTSIZE

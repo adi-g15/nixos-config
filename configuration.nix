@@ -167,9 +167,9 @@
       #codespell
       #duplicacy
       #gh
-      #git
+      git
       #google-cloud-sdk
-      #kdeconnect-kde # ERROR
+      libsForQt5.kdeconnect-kde
       python3
       #rclone
       redshift-plasma-applet
@@ -230,6 +230,13 @@
   # List services that you want to enable:
 
   services.locate.enable = true;
+
+  # https://libreddit.tiekoetter.com/r/NixOS/comments/w1jqd3/ive_made_some_changes_to_etcconfigurationnix/ihpwzen
+#  system.nixos.label = (lib.maybeEnv "NIXOS_LABEL"
+#(lib.concatStringsSep "-" ((lib.sort (x: y: x < y) config.system.nixos.tags) ++
+#                           [(lib.maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version)
+#                             "g${inputs.self.shortRev}"
+#                           ])));
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

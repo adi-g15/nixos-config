@@ -23,10 +23,8 @@
       git
       gnupg
       #google-cloud-sdk
-      libsForQt5.kdeconnect-kde
       python3
       #rclone
-      redshift-plasma-applet
       ripgrep
       #rmlint
       #rustup
@@ -86,7 +84,6 @@
 
 	arduino_compile = "arduino-cli compile --fqbn arduino:avr:uno";
 	arduino_upload = "arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno";
-
       };
     };
 
@@ -191,4 +188,31 @@
   # to get completion for system packages (eg. systemd)
   # @ref: https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
   environment.pathsToLink = [ "/share/zsh" ];
+
+  services.flameshot.enable = true;
+  services.flameshot.settings = {
+    General = {
+      disabledTrayIcon = true;
+      showStartupLaunchMessage = false;
+      checkForUpdates = false;
+      copyPathAfterSave = true;
+      savePath = "/home/adityag/Pictures/Screenshots";
+      savePathFixed = true;
+    };
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
+  services.redshift = {
+    enable = true;
+    dawnTime = "6:00-7:45";
+    duskTime = "18:35-20:15";
+    latitude = 25.619288;
+    longitude = 85.17697;
+    provider = "manual";	# fix karde rha hu location, geoclue2 increases boot time by ~300ms
+    tray = true;
+  };
 }

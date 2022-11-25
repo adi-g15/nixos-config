@@ -28,4 +28,13 @@
   #    ExecStart="${pkgs.bash}/bin/bash -c 'echo 3000 > /sys/kernel/mm/lru_gen/min_ttl_ms'";
   #  };
   #};
+
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  # @ref: https://rycee.gitlab.io/home-manager/options
+  services.gpg-agent.enableFishIntegration = false;
+  services.gpg-agent.enableScDaemon = false;
 }

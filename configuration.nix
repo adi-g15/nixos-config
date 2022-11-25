@@ -10,11 +10,7 @@
       ./home-manager-config.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
   boot = {
-
-    # kernelPackages = pkgs.linuxPackages_6_0;
-
     # Nahi chahiye mereko plymouth
     plymouth.enable = false;
 
@@ -113,27 +109,14 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5 = {
     enable = true;
-#    excludePackages = with pkgs.libsForQt5; [
-#      elisa
-#      oxygen
-#      khelpcenter
-#      plasma-browser-integration
-#      print-manager
-#    ];
   };
 
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
+  # probably not available in this version of nix: https://github.com/NixOS/nixpkgs/pull/177389
+  # services.xserver.desktopManager.plasma5.excludePackages = [ pkgs.plasma5Packages.elisa ]; };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # sound.enable = true;
   # @adi-g15
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;  # Use to kr nhi rha hu abhi na, dekha jayega manually enable kaise kare
@@ -194,16 +177,6 @@
 
   # stdenv = pkgs.clangStdenv;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
   services.locate.enable = true;
 
   # https://libreddit.tiekoetter.com/r/NixOS/comments/w1jqd3/ive_made_some_changes_to_etcconfigurationnix/ihpwzen
@@ -221,17 +194,6 @@
     options = "--delete-older-than 7d";
   };
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default

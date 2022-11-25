@@ -1,7 +1,10 @@
 { ... }:
 
 {
-  imports = [ <home-manager/nixos> ];
+  imports = [
+    <home-manager/nixos>
+    ./nvim-config.nix
+  ];
 
   # remain consistent with global pkgs, and saves an extra Nixpkgs evaluation
   home-manager.useGlobalPkgs = true;
@@ -21,7 +24,6 @@
       #duplicacy
       gh
       git
-      gnupg
       #google-cloud-sdk
       python3
       #rclone
@@ -177,6 +179,58 @@
 	}
       ];
     };
+
+    # WARNING: still copy the ~/.gnupg directory to maintain the keys
+    programs.gpg.enable = true;
+
+    programs.neovim = {
+      enable = true;
+
+      coc.enable = true;
+
+      plugins = with pkgs.vimPlugins; [
+	# @brief Provides linting support, can autofix using :ALEFix also
+	# Other useful commands are :ALEGoToDefinition, :ALESymbolSearch,
+	# :ALEFindReferences and :ALEHover
+        ale
+
+	# @brief: To auto create matching closing bracket, and add space to both sides
+	# whenever space pressed
+	auto-pairs
+
+	coc-cmake
+	coc-python
+	coc-clangd
+	coc-tsserver
+	coc-rust-analyzer
+
+	# @brief: Nerdtree filetree explorer
+	# First do :NERDTree then press '?', or directly :help NERDTree
+	nerdtree
+
+	# @brief: Ranger file manager
+	# @uses: default shortcut for opening Ranger is  <leader>f
+	# To disable the default key mapping, add this line in your .vimrc or init.vim:  let g:ranger_map_keys = 0
+	# then you can add a new mapping with this line:  map <leader>f :Ranger<CR> .
+	# :Ranger or :RangerNewTab
+	# ranger-vim
+
+	# @brief Polyglot, language pack
+	vim-polyglot
+
+	# @brief Statusbar/Tabline
+	# Read the README to setup
+	vim-airline
+	vim-airline-themes
+
+	vim-nix
+      ];
+
+      vimdiffAlias = true;
+      withNodeJs = false;
+      withPython3 = true;
+      withRuby = false;
+    };
   };
 
   # for i3
@@ -189,30 +243,30 @@
   # @ref: https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
   environment.pathsToLink = [ "/share/zsh" ];
 
-  services.flameshot.enable = true;
-  services.flameshot.settings = {
-    General = {
-      disabledTrayIcon = true;
-      showStartupLaunchMessage = false;
-      checkForUpdates = false;
-      copyPathAfterSave = true;
-      savePath = "/home/adityag/Pictures/Screenshots";
-      savePathFixed = true;
-    };
-  };
+  #services.flameshot.enable = true;
+  #services.flameshot.settings = {
+  #  General = {
+  #    disabledTrayIcon = true;
+  #    showStartupLaunchMessage = false;
+  #    checkForUpdates = false;
+  #    copyPathAfterSave = true;
+  #    savePath = "/home/adityag/Pictures/Screenshots";
+  #    savePathFixed = true;
+  #  };
+  #};
 
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
+  #services.kdeconnect = {
+  #  enable = true;
+  #  indicator = true;
+  #};
 
-  services.redshift = {
-    enable = true;
-    dawnTime = "6:00-7:45";
-    duskTime = "18:35-20:15";
-    latitude = 25.619288;
-    longitude = 85.17697;
-    provider = "manual";	# fix karde rha hu location, geoclue2 increases boot time by ~300ms
-    tray = true;
-  };
+  #services.redshift = {
+  #  enable = true;
+  #  dawnTime = "6:00-7:45";
+  #  duskTime = "18:35-20:15";
+  #  latitude = 25.619288;
+  #  longitude = 85.17697;
+  #  provider = "manual";	# fix karde rha hu location, geoclue2 increases boot time by ~300ms
+  #  tray = true;
+  #};
 }

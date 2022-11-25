@@ -35,6 +35,6 @@
   };
 
   # @ref: https://rycee.gitlab.io/home-manager/options
-  services.gpg-agent.enableFishIntegration = false;
-  services.gpg-agent.enableScDaemon = false;
+  #services.gpg-agent.enableFishIntegration = false;
+  #services.gpg-agent.enableScDaemon = false;
 }

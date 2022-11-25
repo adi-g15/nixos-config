@@ -44,48 +44,48 @@
       enable = true;
 
       shellAliases = {
-	# ls
-	l = "ls -lh";
-	ll = "ls -lah";
-	la = "ls -A";
-	lm = "ls -m";
-	lr = "ls -R";
-	lg = "ls -l --group-directories-first";
+        # ls
+        l = "ls -lh";
+        ll = "ls -lah";
+        la = "ls -A";
+        lm = "ls -m";
+        lr = "ls -R";
+        lg = "ls -l --group-directories-first";
 
         # rsync version of cp
         rcp = "rsync -ah --progress -A -X -U -N";
 
         # git
-	gcd = "git clone --depth 1";
-	gc = "git commit -m";
-	gp = "git push origin --all";
-	gt = "git tag";
-	ghv = "gh repo view";
+        gcd = "git clone --depth 1";
+        gc = "git commit -m";
+        gp = "git push origin --all";
+        gt = "git tag";
+        ghv = "gh repo view";
 
-	get_pub_ip = "curl https://ipinfo.io/ip; echo";
+        get_pub_ip = "curl https://ipinfo.io/ip; echo";
 
-	create_rand_pwd="openssl rand -base64 8";
+        create_rand_pwd="openssl rand -base64 8";
 
-	rm = "echo 'Oh MY GOD! Sab delete ho gya kya !.'; false";
-	tp = "trash-put";  #"gio trash";
-	diff = "diff --color=always";
-	less = "less -R";
+        rm = "echo 'Oh MY GOD! Sab delete ho gya kya !.'; false";
+        tp = "trash-put";  #"gio trash";
+        diff = "diff --color=always";
+        less = "less -R";
 
-	start_web_server="updog -p 5000 -d $HOME/shared-drive"; #"webfsd -p 5000 -r $HOME/shared-drive"
-	stop_web_server="kill \$(pgrep updog --oldest)";  # webfsd
-	nps="npm run start";
-	npd="nodemon run dev";
+        start_web_server="updog -p 5000 -d $HOME/shared-drive"; #"webfsd -p 5000 -r $HOME/shared-drive"
+        stop_web_server="kill \$(pgrep updog --oldest)";  # webfsd
+        nps="npm run start";
+        npd="nodemon run dev";
 
-	view = "vim -R";
-	gdb = "cgdb";
- 
-	lsl = "LD_LIBRARY_PATH=/home/adityag/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib SQL_USERNAME=adityag DB_NAME=wifi /usr/bin/lsl";
-	lsl-safe = "LD_LIBRARY_PATH=/home/adityag/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib SQL_USERNAME=adityag DB_NAME=safewifi /usr/bin/lsl";
+        view = "vim -R";
+        gdb = "cgdb";
+      
+        lsl = "LD_LIBRARY_PATH=/home/adityag/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib SQL_USERNAME=adityag DB_NAME=wifi /usr/bin/lsl";
+        lsl-safe = "LD_LIBRARY_PATH=/home/adityag/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib SQL_USERNAME=adityag DB_NAME=safewifi /usr/bin/lsl";
 
-	rmlint = "rmlint --no-hardlinked --no-crossdev";
+        rmlint = "rmlint --no-hardlinked --no-crossdev";
 
-	arduino_compile = "arduino-cli compile --fqbn arduino:avr:uno";
-	arduino_upload = "arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno";
+        arduino_compile = "arduino-cli compile --fqbn arduino:avr:uno";
+        arduino_upload = "arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno";
       };
     };
 
@@ -107,11 +107,11 @@
 
       # Extra commands to add to .zshrc
       initExtra = ''
-	# @ref: @man: `zshoptions`
-	setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
-	setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
- 
-	echo "GDrive Backup kar"
+        # @ref: @man: `zshoptions`
+        setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+        setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+      
+        echo "GDrive Backup kar"
       '';
     };
 
@@ -155,28 +155,28 @@
       userEmail = "me.adityag15@gmail.com";
 
       extraConfig = {
-	core = { editor = "nvim"; };
-	init = { defaultBranch = "main"; };
-	pull = { rebase = false; };
-	tag = { gpgSign = true; };
-	color = { ui = "auto"; };
+        core = { editor = "nvim"; };
+        init = { defaultBranch = "main"; };
+        pull = { rebase = false; };
+        tag = { gpgSign = true; };
+        color = { ui = "auto"; };
       };
 
       signing = {
-	key = "97EE50F0010EDA0C";
-	signByDefault = true;
+        key = "97EE50F0010EDA0C";
+        signByDefault = true;
       };
 
       includes = [
-	{
-	  # Instead of path, can also specify `contents`
-	  path = "~/shunya-iotiot/.gitconfig_include";
-	  condition = "gitdir:~/shunya-iotiot/";
-	}
-	{
-	  path = "~/os-projects/.gitconfig_include";
-	  condition = "gitdir:~/os-projects";
-	}
+        {
+          # Instead of path, can also specify `contents`
+          path = "~/shunya-iotiot/.gitconfig_include";
+          condition = "gitdir:~/shunya-iotiot/";
+        }
+        {
+          path = "~/os-projects/.gitconfig_include";
+          condition = "gitdir:~/os-projects";
+        }
       ];
     };
 
@@ -189,41 +189,41 @@
       coc.enable = true;
 
       plugins = with pkgs.vimPlugins; [
-	# @brief Provides linting support, can autofix using :ALEFix also
-	# Other useful commands are :ALEGoToDefinition, :ALESymbolSearch,
-	# :ALEFindReferences and :ALEHover
+        # @brief Provides linting support, can autofix using :ALEFix also
+        # Other useful commands are :ALEGoToDefinition, :ALESymbolSearch,
+        # :ALEFindReferences and :ALEHover
         ale
 
-	# @brief: To auto create matching closing bracket, and add space to both sides
-	# whenever space pressed
-	auto-pairs
+        # @brief: To auto create matching closing bracket, and add space to both sides
+        # whenever space pressed
+        auto-pairs
 
-	coc-cmake
-	coc-python
-	coc-clangd
-	coc-tsserver
-	coc-rust-analyzer
+        coc-cmake
+        coc-python
+        coc-clangd
+        coc-tsserver
+        coc-rust-analyzer
 
-	# @brief: Nerdtree filetree explorer
-	# First do :NERDTree then press '?', or directly :help NERDTree
-	nerdtree
+        # @brief: Nerdtree filetree explorer
+        # First do :NERDTree then press '?', or directly :help NERDTree
+        nerdtree
 
-	# @brief: Ranger file manager
-	# @uses: default shortcut for opening Ranger is  <leader>f
-	# To disable the default key mapping, add this line in your .vimrc or init.vim:  let g:ranger_map_keys = 0
-	# then you can add a new mapping with this line:  map <leader>f :Ranger<CR> .
-	# :Ranger or :RangerNewTab
-	# ranger-vim
+        # @brief: Ranger file manager
+        # @uses: default shortcut for opening Ranger is  <leader>f
+        # To disable the default key mapping, add this line in your .vimrc or init.vim:  let g:ranger_map_keys = 0
+        # then you can add a new mapping with this line:  map <leader>f :Ranger<CR> .
+        # :Ranger or :RangerNewTab
+        # ranger-vim
 
-	# @brief Polyglot, language pack
-	vim-polyglot
+        # @brief Polyglot, language pack
+        vim-polyglot
 
-	# @brief Statusbar/Tabline
-	# Read the README to setup
-	vim-airline
-	vim-airline-themes
+        # @brief Statusbar/Tabline
+        # Read the README to setup
+        vim-airline
+        vim-airline-themes
 
-	vim-nix
+        vim-nix
       ];
 
       vimdiffAlias = true;
@@ -231,42 +231,124 @@
       withPython3 = true;
       withRuby = false;
     };
-  };
 
-  # for i3
-  # services.betterlockscreen = {
-  #  enable = true;
-  #  arguments = [ "-u /home/adityag/Pictures/windows_wallpapers/9c71f1ecef355c5110a01b0e81cd6f8cfc0466827eb33c236bbd4df299b71cf2.png" ];
-  #};
+    #for i3
+    #services.betterlockscreen = {
+    #  enable = true;
+    #  arguments = [ "-u /home/adityag/Pictures/windows_wallpapers/9c71f1ecef355c5110a01b0e81cd6f8cfc0466827eb33c236bbd4df299b71cf2.png" ];
+    #};
+
+    services.flameshot.enable = true;
+    services.flameshot.settings = {
+      General = {
+        disabledTrayIcon = true;
+        showStartupLaunchMessage = false;
+        checkForUpdates = false;
+        copyPathAfterSave = true;
+        savePath = "/home/adityag/Pictures/Screenshots";
+        savePathFixed = true;
+      };
+    };
+
+    services.kdeconnect = {
+      enable = true;
+      indicator = true;
+    };
+
+    services.redshift = {
+      enable = true;
+      dawnTime = "6:00-7:45";
+      duskTime = "18:35-20:15";
+      latitude = 25.619288;
+      longitude = 85.17697;
+      provider = "manual";	# fix karde rha hu location, geoclue2 increases boot time by ~300ms
+      tray = true;
+    };
+
+    services.fusuma = {
+      enable = true;
+      extraPackages = with pkgs; [ coreutils ruby xdotool ];
+      # @ref: https://github.com/iberianpig/fusuma/wiki/KDE-to-mimic-MacOS
+      # switched actions for 3 fingers and 4 fingers
+      settings = {
+        swipe = {
+          "4" = {
+            left = {
+              workspace = "next"; # Switch to next workspace
+              keypress = {
+                LEFTSHIFT = { 
+                  window = "next"; # Move window to next workspace
+                };
+                LEFTMETA = {
+                  command = "xdotool key --clearmodifiers super+ctrl+Left"; # Move window to left side
+                };
+              };
+            };
+            right = {
+              workspace = "prev"; # Switch to previous workspace
+              keypress = {
+                LEFTSHIFT = {
+                  window = "prev"; # Move window to previous workspace
+                };
+                LEFTMETA = {
+                        command = "xdotool key --clearmodifiers super+ctrl+Right"; # Move window to right side
+                };
+              };
+            };
+            up = {
+              command = "xdotool key Control_L+F10"; # Workspace overview
+              keypress = {
+                LEFTMETA = {
+                  window = {
+                    maximized = "toggle"; # Toggle Maximize/Unmaximize Window
+                  };
+                };
+              };
+            };
+            down = {
+              command = "xdotool key Control_L+F12"; #minimise all windows
+              keypress = {
+                LEFTMETA = {
+                  window = "close"; # Close window
+                };
+              };
+            };
+          };
+          "3" = {
+            right = {
+              command = "xdotool key alt+Right"; # History forward
+            };
+            left = {
+              command = "xdotool key alt+Left"; # History back
+            };
+            up = {
+              command = "xdotool key ctrl+t"; # Open new tab
+              keypress = {
+                LEFTSHIFT = {
+                  command = "xdotool key --clearmodifiers ctrl+shift+t"; # Open last closed tab
+                };
+              };
+            };
+            down = {
+              command = "xdotool key ctrl+w"; # Close tab
+            };
+          };
+        };
+
+        plugin = {
+          inputs = {
+            libinput_command_input = { # options for lib/plugin/inputs/libinput_command_input
+              enable-tap = true; # click to tap
+              enable-dwt = true; # disable tap while typing
+              show-keycodes = true; # https://github.com/iberianpig/fusuma-plugin-keypress#add-show-keycode-option
+            };
+          };
+        };
+      };
+    };
+  };
 
   # to get completion for system packages (eg. systemd)
   # @ref: https://rycee.gitlab.io/home-manager/options.html#opt-programs.zsh.enable
   environment.pathsToLink = [ "/share/zsh" ];
-
-  #services.flameshot.enable = true;
-  #services.flameshot.settings = {
-  #  General = {
-  #    disabledTrayIcon = true;
-  #    showStartupLaunchMessage = false;
-  #    checkForUpdates = false;
-  #    copyPathAfterSave = true;
-  #    savePath = "/home/adityag/Pictures/Screenshots";
-  #    savePathFixed = true;
-  #  };
-  #};
-
-  #services.kdeconnect = {
-  #  enable = true;
-  #  indicator = true;
-  #};
-
-  #services.redshift = {
-  #  enable = true;
-  #  dawnTime = "6:00-7:45";
-  #  duskTime = "18:35-20:15";
-  #  latitude = 25.619288;
-  #  longitude = 85.17697;
-  #  provider = "manual";	# fix karde rha hu location, geoclue2 increases boot time by ~300ms
-  #  tray = true;
-  #};
 }

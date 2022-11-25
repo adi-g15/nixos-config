@@ -127,7 +127,7 @@
   nixpkgs.config.allowUnfree = true; #to allow installing anydesk
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # https://nixos.wiki/wiki/Command_Shell
   programs.zsh.enable = true;
@@ -139,7 +139,7 @@
   users.users.adityag = {
     isNormalUser = true;
     description = "Aditya Gupta";
-    extraGroups = [ "wheel" "libvirtd" ];
+    extraGroups = [ "wheel" "libvirtd" "input" ];	# 'input' for fusuma
     packages = []; # managed by home-manager
   };
 

@@ -7,6 +7,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./systemd-services.nix
+      ./home-manager-config.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -140,7 +141,7 @@
   # hardware.opengl.enable = true; # Iske bina kaam kar rha h to karne de
   hardware.pulseaudio.enable = true;
   hardware.cpu.amd.updateMicrocode = true;
-  
+
   nixpkgs.config.allowUnfree = true; #to allow installing anydesk
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -157,39 +158,14 @@
     isNormalUser = true;
     description = "Aditya Gupta";
     extraGroups = [ "wheel" "libvirtd" ];
-    packages = with pkgs; [
-
-      anydesk
-      #arduino-cli
-      bibata-cursors
-      #cgdb
-      #cmake
-      #codespell
-      #duplicacy
-      #gh
-      git
-      #google-cloud-sdk
-      libsForQt5.kdeconnect-kde
-      python3
-      #rclone
-      redshift-plasma-applet
-      #rmlint
-      #rustup
-      teams
-      trash-cli
-      vscodium
-
-      # vim-plug
-      #vimPlugins.vim-plug
-
-      yt-dlp-light
-    ];
+    packages = []; # managed by home-manager
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
       clang
+      dash
       earlyoom
       firefox-bin
       flameshot
@@ -249,7 +225,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

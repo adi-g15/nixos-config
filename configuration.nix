@@ -64,7 +64,6 @@
   networking.networkmanager.wifi.backend = "iwd";
   networking.networkmanager.wifi.macAddress = "random";
   # networking.networkmanager.wifi.powersave = true;
-  nix.settings.auto-optimise-store = true;
   security.doas.enable = true;
   security.sudo.enable = true;
   security.doas.extraRules = [
@@ -213,6 +212,14 @@
 #                           [(lib.maybeEnv "NIXOS_LABEL_VERSION" config.system.nixos.version)
 #                             "g${inputs.self.shortRev}"
 #                           ])));
+
+  # @ref: https://nixos.wiki/wiki/Storage_optimization
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

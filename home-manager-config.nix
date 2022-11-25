@@ -19,7 +19,7 @@
       #cmake
       #codespell
       #duplicacy
-      #gh
+      gh
       git
       gnupg
       #google-cloud-sdk

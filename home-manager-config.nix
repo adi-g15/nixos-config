@@ -273,45 +273,11 @@
       settings = {
         swipe = {
           "4" = {
-            left = {
-              workspace = "next"; # Switch to next workspace
-              keypress = {
-                LEFTSHIFT = { 
-                  window = "next"; # Move window to next workspace
-                };
-                LEFTMETA = {
-                  command = "xdotool key --clearmodifiers super+ctrl+Left"; # Move window to left side
-                };
-              };
-            };
-            right = {
-              workspace = "prev"; # Switch to previous workspace
-              keypress = {
-                LEFTSHIFT = {
-                  window = "prev"; # Move window to previous workspace
-                };
-                LEFTMETA = {
-                        command = "xdotool key --clearmodifiers super+ctrl+Right"; # Move window to right side
-                };
-              };
-            };
             up = {
-              command = "xdotool key Control_L+F10"; # Workspace overview
-              keypress = {
-                LEFTMETA = {
-                  window = {
-                    maximized = "toggle"; # Toggle Maximize/Unmaximize Window
-                  };
-                };
-              };
+              command = "xdotool key Meta+PageUp"; # Maximize window
             };
             down = {
-              command = "xdotool key Control_L+F12"; #minimise all windows
-              keypress = {
-                LEFTMETA = {
-                  window = "close"; # Close window
-                };
-              };
+              command = "xdotool key Meta+PgDown"; # Minimize window
             };
           };
           "3" = {
@@ -334,16 +300,16 @@
             };
           };
         };
-
-        plugin = {
-          inputs = {
-            libinput_command_input = { # options for lib/plugin/inputs/libinput_command_input
-              enable-tap = true; # click to tap
-              enable-dwt = true; # disable tap while typing
-              show-keycodes = true; # https://github.com/iberianpig/fusuma-plugin-keypress#add-show-keycode-option
-            };
-          };
-        };
+	rotate = {
+	  "2" = {
+	    clockwise = {
+	      command = "konsole";
+	    };
+	    counterclockwise = {
+	      command = "firefox";
+	    };
+	  };
+	};
       };
     };
   };

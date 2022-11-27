@@ -274,18 +274,18 @@
         swipe = {
           "4" = {
             up = {
-              command = "xdotool key Meta+PageUp"; # Maximize window
+              command = "xdotool key Meta+Prior"; # Maximize window, Prior=Page_Up
             };
             down = {
-              command = "xdotool key Meta+PgDown"; # Minimize window
+              command = "xdotool key Meta+Next"; # Minimize window, Next=Page_Down
             };
           };
           "3" = {
             right = {
-              command = "xdotool key alt+Right"; # History forward
+              command = "xdotool key ctrl+Tab"; # Next tab
             };
             left = {
-              command = "xdotool key alt+Left"; # History back
+              command = "xdotool key ctrl+shift+Tab"; # Previous tab
             };
             up = {
               command = "xdotool key ctrl+t"; # Open new tab

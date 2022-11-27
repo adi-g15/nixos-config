@@ -29,7 +29,14 @@
     {
       device = "/dev/disk/by-uuid/0c3283d1-aa4d-4b0e-8ae3-e0f65aba7d6a";
       fsType = "btrfs";
-      options = [ "compress=zstd:9" "noatime" "subvol=backup" ];
+      options = [ "compress-force=zstd:9" "noatime" "subvol=backup" ];
+    };
+
+  fileSystems."/home/adityag/backup/motorola" = 
+    {
+      device = "/dev/disk/by-uuid/0c3283d1-aa4d-4b0e-8ae3-e0f65aba7d6a";
+      fsType = "btrfs";
+      options = [ "compress-force=zstd:9" "noatime" "subvol=motorola_one_power" ];
     };
 
   fileSystems."/home/adityag/projects" =

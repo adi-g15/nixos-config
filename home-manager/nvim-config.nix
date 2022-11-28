@@ -64,6 +64,9 @@
         set mouse=                  " ignore mouse
         set title
 
+	# https://stackoverflow.com/a/159066
+	autocmd FileType nix setlocal shiftwidth=2 tabstop=2
+
         " Mapped nerd to Ctrl+o
         map <C-o> :NERDTreeToggle<CR>
 
@@ -221,3 +224,5 @@
     };
   };
 }
+
+# ex: shiftwidth=2 expandtab: 

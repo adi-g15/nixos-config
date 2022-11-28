@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ./systemd-services.nix
       ./home-manager-config.nix
+      ./system/unbound.nix
     ];
 
   boot = {

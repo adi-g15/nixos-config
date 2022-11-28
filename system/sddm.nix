@@ -4,30 +4,56 @@
 
 let 
 
-# TODO: Use https://gitlab.com/isseigx/simplicity-sddm-theme/-/blob/master/simplicity/images/background.jpg as background in future, read README at https://github.com/MarianArlt/kde-plasma-chili for info, probably with awk
+# TODO: Use https://gitlab.com/isseigx/simplicity-sddm-theme/-/blob/master/simplicity/images/background.jpg as background
+# Use sddm-theme-clairvoyance in case the aerial theme is too costly
 
-  sddm-kde-plasma-chili = pkgs.stdenv.mkDerivation rec {
-    pname = "sddm-kde-plasma-chili";
-    version = "0.5.5";
+  sddm-aerial-theme = pkgs.stdenv.mkDerivation rec {
+    pname = "sddm-aerial-theme";
+    version = "1.0.0";
 
     src = pkgs.fetchFromGitHub {
-      owner = "MarianArlt";
-      repo = "kde-plasma-chili";
-      rev = "a371123959676f608f01421398f7400a2f01ae06";
-      sha256 = "17pkxpk4lfgm14yfwg6rw6zrkdpxilzv90s48s2hsicgl3vmyr3x";
+      owner = "3ximus";
+      repo = "aerial-sddm-theme";
+      rev = "7dceae9add6602dc499f9df155cdbe0b15c3b94a";
+      sha256 = "1xa0f1bf8i78m0zw6z7mly32hwpprd2ci7myi4xkrz8np0gv9zyb";
     };
 
     phases = [ "installPhase" ];
  
     installPhase = ''
       mkdir -p $out/share/sddm/themes
-      cp -aR $src $out/share/sddm/themes/kde-plasma-chili
+      cp -aR $src $out/share/sddm/themes/$pname
     '';
  };
 
 in {
+  environment.systemPackages = with pkgs.libsForQt5.qt5; [
+    #gst-libav
+    #phonon-qt5-gstreamer
+    #gst-plugins-good
+    qtquickcontrols
+    qtgraphicaleffects
+    qtmultimedia
+  ];
 
-  services.xserver.displayManager.sddm.theme = "${sddm-kde-plasma-chili}/share/sddm/themes/kde-plasma-chili";
+  services.xserver.displayManager.sddm = {
+    # Set theme built above
+    theme = "${sddm-aerial-theme}/share/sddm/themes/sddm-aerial-theme";
+
+    # Disable virtual keyboard
+    settings = {
+      General = {
+	InputMethod = "";
+      };
+    };
+  };
+
+  # Enable fprintd
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+
+  # @note: Use pkgs.libfprint-2-tod1-goodix if this doesn't work
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090;
 }
 
 # ex: shiftwidth=2 expandtab:

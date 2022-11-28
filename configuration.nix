@@ -9,6 +9,7 @@
       ./systemd-services.nix
       ./home-manager-config.nix
       ./system/unbound.nix
+      ./system/sddm.nix
     ];
 
   boot = {

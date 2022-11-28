@@ -25,8 +25,9 @@
       git
       #google-cloud-sdk
       google-drive-ocamlfuse
+      killall
       python3
-      #rclone
+      rclone
       ripgrep
       #rmlint
       #rustup

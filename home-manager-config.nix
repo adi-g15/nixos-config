@@ -10,6 +10,7 @@
     ./home-manager/redshift.nix
     ./home-manager/user-packages.nix
     ./home-manager/zsh.nix
+    ./home-manager/configs.nix
   ];
 }
 

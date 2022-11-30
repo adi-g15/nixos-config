@@ -110,7 +110,7 @@
           SortPriority:    0
           CaseSensitive:   false
       IncludeIsMainRegex: '(Test)?$'
-      IncludeIsMainSourceRegex: ''
+      IncludeIsMainSourceRegex: ""
       IndentCaseLabels: false
       IndentCaseBlocks: false
       IndentGotoLabels: true
@@ -123,8 +123,8 @@
       JavaScriptQuotes: Leave
       JavaScriptWrapImports: true
       KeepEmptyLinesAtTheStartOfBlocks: true
-      MacroBlockBegin: ''
-      MacroBlockEnd:   ''
+      MacroBlockBegin: ""
+      MacroBlockEnd:   ""
       MaxEmptyLinesToKeep: 1
       NamespaceIndentation: None
       ObjCBinPackProtocolList: Auto

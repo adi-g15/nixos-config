@@ -10,7 +10,6 @@
     services.flameshot.settings = {
       General = {
         contrastOpacity = 188;
-        disabledTrayIcon = false;
         drawColor = "#ff0000";
         drawFontSize = 8;
         drawThickness = 1;

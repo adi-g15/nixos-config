@@ -14,9 +14,9 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1bcea90d-7cba-4aa8-91fe-ccd177d1ce79";
-      fsType = "btrfs";
-      options = [ "compress=zstd" "noatime" "subvol=root" ];
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "size=2G" "mode=755" ];  # mode=755, so only root has write access
     };
 
   fileSystems."/home" =

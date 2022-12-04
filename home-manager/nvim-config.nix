@@ -3,6 +3,9 @@
   imports = [ <home-manager/nixos> ];
 
   home-manager.users.adityag = { config, pkgs, ... }: {
+    # xclip required for zsh's copyfile, and nvim's clipboard+=unnamed functionality
+    home.packages = [ pkgs.xclip ];
+
     programs.neovim = {
       enable = true;
 

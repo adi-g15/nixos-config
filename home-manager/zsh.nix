@@ -52,6 +52,8 @@
 
         arduino_compile = "arduino-cli compile --fqbn arduino:avr:uno";
         arduino_upload = "arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno";
+
+        code = "codium";
       };
     };
 

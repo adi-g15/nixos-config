@@ -3,6 +3,7 @@
 {
   imports = [
     <home-manager/nixos>
+    ./kde-configs.nix
   ];
 
   home-manager.users.adityag = { config, ... }: {

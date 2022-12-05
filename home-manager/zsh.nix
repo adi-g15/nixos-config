@@ -77,8 +77,6 @@
         # @ref: @man: `zshoptions`
         setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
         setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-      
-        echo "GDrive Backup kar"
       '';
     };
 

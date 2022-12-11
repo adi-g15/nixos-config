@@ -225,6 +225,13 @@
         " [END] Changes suggested by COC
       '';
     };
+
+    xdg.configFile."nvim/pack/github/start/copilot.vim".source = pkgs.fetchFromGitHub {
+      owner = "github";
+      repo = "copilot.vim";
+      rev = "2f4f9259a5c0f927b31c4256cd3e4d7c6df87662";
+      sha256 = "hUQhdIVIzHQKICYhSOjbG+GObxvpkub94fD4ESGwhmo=";
+    };
   };
 }
 

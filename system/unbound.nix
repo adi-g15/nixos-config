@@ -29,7 +29,7 @@ in {
   networking.firewall.allowedTCPPorts = [ 53 ];
 
   services.unbound = {
-    enable = true;
+    enable = false;
     settings = {
       forward-zone = [{
 	name = ".";

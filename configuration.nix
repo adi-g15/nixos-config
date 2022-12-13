@@ -10,6 +10,7 @@
       ./home-manager-config.nix
       ./system/unbound.nix
       ./system/sddm.nix
+      ./system/sysctl-configs.nix
     ];
 
   boot = {
@@ -45,8 +46,8 @@
   # @adi-g15 appstream metadata specification'
   appstream.enable = true;
 
-  # @adi-g15
-  boot.postBootCommands = "echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold";
+  # @adi-g15 doesn't work, these commands end up in /nix/store/*local-cmds
+  # boot.postBootCommands = "echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold";
 
   # @adi-g15
   boot.runSize = "512m";

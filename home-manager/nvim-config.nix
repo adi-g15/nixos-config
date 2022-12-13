@@ -67,7 +67,7 @@
         set mouse=                  " ignore mouse
         set title
 
-	# https://stackoverflow.com/a/159066
+	" https://stackoverflow.com/a/159066
 	autocmd FileType nix setlocal shiftwidth=2 tabstop=2
 
         " Mapped nerd to Ctrl+o
@@ -202,7 +202,8 @@
         " Add (Neo)Vim's native statusline support.
         " NOTE: Please see `:h coc-status` for integrations with external plugins that
         " provide custom statusline: lightline.vim, vim-airline.
-        set statusline^=%{coc#status()}%{get(b:,'coc_current_function',' ')}
+        " @ref: Escaping \'\': https://discourse.nixos.org/t/need-help-understanding-how-to-escape-special-characters-in-the-list-of-str-type/11389/2 
+        set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''')}
 
         " Mappings for CoCList
         " Show all diagnostics.

@@ -26,6 +26,7 @@
       #google-cloud-sdk
       google-drive-ocamlfuse
       killall
+      nodejs-16_x           # for nvim, copilot
       python3
       rclone
       ripgrep

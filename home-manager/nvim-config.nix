@@ -9,7 +9,103 @@
     programs.neovim = {
       enable = true;
 
-      coc.enable = true;
+      coc = {
+        enable = true;
+
+        # fixing build error when coc.enable and neovim.withNodeJs both set
+        # @ref: https://github.com/nix-community/home-manager/issues/2966#issuecomment-1133667918
+        package = pkgs.vimUtils.buildVimPluginFrom2Nix {
+          pname = "coc.nvim";
+          version = "2022-05-21";
+          src = pkgs.fetchFromGitHub {
+            owner = "neoclide";
+            repo = "coc.nvim";
+            rev = "791c9f673b882768486450e73d8bda10e391401d";
+            sha256 = "sha256-MobgwhFQ1Ld7pFknsurSFAsN5v+vGbEFojTAYD/kI9c=";
+          };
+          meta.homepage = "https://github.com/neoclide/coc.nvim/";
+        };
+
+        settings = {
+          "coc.preferences.rootPatterns" = [ ".git" ];
+          "explorer.keyMappings.global" = {
+            "<cr>" = [
+              "expandable?"
+              [ "expanded?" "collapse" "expand" ]
+              "open"
+            ];
+          };
+  
+          "explorer.file.showHiddenFiles" = true;
+          "explorer.file.reveal.auto" = true;
+          "explorer.git.icon.status.added" = "✚";
+          "explorer.git.icon.status.copied" = "➜";
+          "explorer.git.icon.status.deleted" = "✖";
+          "explorer.git.icon.status.ignored" = "☒";
+          "explorer.git.icon.status.mixed" = "✹";
+          "explorer.git.icon.status.modified" = "✹";
+          "explorer.git.icon.status.renamed" = "➜";
+          "explorer.git.icon.status.unmerged" = "═";
+          "explorer.git.icon.status.untracked" = "?";
+          "explorer.git.showIgnored" = true;
+          "explorer.icon.enableNerdfont" = true;
+
+          "suggest.noselect" = true;
+
+          "languageserver" = {
+            "nix" = {
+              "command" = "rnix-lsp";
+              "filetypes" = [ "nix" ];
+            };
+          };
+        };
+
+        pluginConfig = ''
+          " CoC Extensions
+          let g:coc_global_extensions=[
+              \ 'coc-cmake',
+              \ 'coc-clangd',
+              \ 'coc-dictionary',
+              \ 'coc-rust-analyzer',
+              \ 'coc-tsserver',
+              \ ]
+          set updatetime=300
+          set shortmess+=c
+          " Use tab for trigger completion with characters ahead and navigate.
+          inoremap <silent><expr> <TAB>
+            \ coc#pum#visible() ? coc#pum#next(1) :
+            \ CheckBackspace() ? "\<Tab>" :
+            \ coc#refresh()
+          inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+          
+          function! CheckBackspace() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+          endfunction
+          " Remap keys for gotos
+          nmap <silent> gd <Plug>(coc-definition)
+          nmap <silent> gy <Plug>(coc-type-definition)
+          nmap <silent> gi <Plug>(coc-implementation)
+          nmap <silent> gr <Plug>(coc-references)
+          " Formatting
+          vmap <C-F> <Plug>(coc-format-selected)
+          xmap <C-F> :call CocAction('format')<CR>
+          nmap <C-F> :call CocAction('format')<CR>
+          " Hover and rename
+          nmap <silent> <F6> <Plug>(coc-rename)
+          nnoremap <silent> K :call CocAction('doHover')<CR>
+          " Go to symbol in (document|project)
+          nmap <silent> S :CocList symbols<CR>
+          " CoC Explorer
+          function! CocExploreCwd()
+              let cwd = substitute(execute(":pwd"), '\n', "", "")
+              exe 'CocCommand explorer ' . cwd
+          endfunction
+          map <S-T> :call CocExploreCwd()<CR>
+          " Open the diagnostics when diagnostics change
+          autocmd BufWritePost * call timer_start(500, { tid -> execute('execute "CocDiagnostics" | execute "botright lwindow" | execute "wincmd p"') })
+        '';
+      };
 
       plugins = with pkgs.vimPlugins; [
         # @brief Provides linting support, can autofix using :ALEFix also
@@ -21,11 +117,12 @@
         # whenever space pressed
         auto-pairs
 
-        coc-cmake
-        coc-python
-        coc-clangd
-        coc-tsserver
-        coc-rust-analyzer
+        # @note: currently in coc.pluginConfig. But not coc-python
+        #coc-cmake
+        #coc-python
+        #coc-clangd
+        #coc-tsserver
+        #coc-rust-analyzer
 
         # @brief: Nerdtree filetree explorer
         # First do :NERDTree then press '?', or directly :help NERDTree
@@ -49,10 +146,11 @@
       ];
 
       vimdiffAlias = true;
-      withNodeJs = false;
+      withNodeJs = true;
       withPython3 = true;
       withRuby = false;
 
+/*
       extraConfig = ''
         syntax on
         filetype plugin on
@@ -225,6 +323,7 @@
 
         " [END] Changes suggested by COC
       '';
+    */
     };
 
     xdg.configFile."nvim/pack/github/start/copilot.vim".source = pkgs.fetchFromGitHub {

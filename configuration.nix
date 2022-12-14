@@ -11,6 +11,7 @@
       ./system/unbound.nix
       ./system/sddm.nix
       ./system/sysctl-configs.nix
+      ./extra-users/ankit/ankit.nix
     ];
 
   boot = {

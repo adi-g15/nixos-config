@@ -5,6 +5,7 @@
     <home-manager/nixos>
   ];
 
+  # TODO: Move global configs to configuration.nix or in system/
   # remain consistent with global pkgs, and saves an extra Nixpkgs evaluation
   home-manager.useGlobalPkgs = true;
 

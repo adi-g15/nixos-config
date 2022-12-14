@@ -6,3 +6,6 @@ activitywatch
 kde config
 
 remove extra service for battery threshold
+
+separate user config
+remote programs from systemPackages

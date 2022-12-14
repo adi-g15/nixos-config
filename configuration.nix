@@ -7,10 +7,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./systemd-services.nix
-      ./home-manager-config.nix
       ./system/unbound.nix
       ./system/sddm.nix
       ./system/sysctl-configs.nix
+      ./system/home-manager-global.nix
+      ./user/adityag.nix
       ./extra-users/ankit/ankit.nix
     ];
 
@@ -66,17 +67,6 @@
   # networking.networkmanager.wifi.powersave = true;
   security.doas.enable = true;
   security.sudo.enable = true;
-  security.doas.extraRules = [
-    { users = [ "adityag" ]; keepEnv = true; persist = true;  }
-  ];
-
-  # Can add:
-  # permit nopass adityag as root cmd /usr/bin/psd-overlay-helper
-  security.doas.extraConfig = ''
-    deny adityag as root cmd su
-    deny adityag as root cmd rm args -rf
-    deny adityag as root cmd rm args -r
-  '';
 
   # @adi-g15 nftables naya wala h, usko enable krke firewall disable krna hoga
   networking.nftables.enable = true;
@@ -135,17 +125,9 @@
 
   # https://nixos.wiki/wiki/Command_Shell
   programs.zsh.enable = true;
-  users.users.adityag.shell = pkgs.zsh;
+  
   environment.shells = [ pkgs.zsh ];
   environment.binsh = "${pkgs.dash}/bin/dash";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.adityag = {
-    isNormalUser = true;
-    description = "Aditya Gupta";
-    extraGroups = [ "wheel" "libvirtd" "input" ];	# 'input' for fusuma
-    packages = []; # managed by home-manager
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -155,7 +137,6 @@
       earlyoom
       firefox-bin
       flameshot
-      gparted
       gvfs
       htop
       libreoffice-qt # Can also use libreoffice-still

@@ -12,7 +12,6 @@
       ./system/sysctl-configs.nix
       ./system/home-manager-global.nix
       ./user/adityag.nix
-      ./extra-users/ankit/ankit.nix
     ];
 
   boot = {

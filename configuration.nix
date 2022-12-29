@@ -6,7 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./system/systemd-services.nix
+      ./system/systemd/main.nix
       ./system/unbound.nix
       ./system/sddm.nix
       ./system/sysctl-configs.nix

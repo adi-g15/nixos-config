@@ -103,7 +103,7 @@
       # don't ignore commands starting with space
       ignoreSpace = false;
 
-      path = ".zsh_history";    # relative to $HOME
+      path = "\$HOME/.zsh_history";    # relative to $HOME
 
       save = 10000000;  # SAVEHIST
       size = 10000000;  # HISTSIZE

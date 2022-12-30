@@ -6,6 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system/printing.nix
       ./system/systemd/main.nix
       ./system/unbound.nix
       ./system/sddm.nix
@@ -106,9 +107,6 @@
 
   # probably not available in this version of nix: https://github.com/NixOS/nixpkgs/pull/177389
   # services.xserver.desktopManager.plasma5.excludePackages = [ pkgs.plasma5Packages.elisa ]; };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # @adi-g15
   hardware.bluetooth.enable = true;

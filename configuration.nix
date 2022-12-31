@@ -6,6 +6,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system/networking.nix
       ./system/printing.nix
       ./system/systemd/main.nix
       ./system/unbound.nix
@@ -55,25 +56,10 @@
   boot.runSize = "512m";
   boot.supportedFilesystems = [ "vfat" "btrfs" ];
   boot.tmpOnTmpfs = true;
-  boot.tmpOnTmpfsSize = "2g";
-  networking.wireless.iwd.enable = true;
-  networking.wireless.iwd.settings = {
-    Network = { EnableIPv6 = true; };
-    Settings = { AutoConnect = true; };
-  };
 
-  networking.networkmanager.wifi.backend = "iwd";
-  networking.networkmanager.wifi.macAddress = "random";
-  # networking.networkmanager.wifi.powersave = true;
+  boot.tmpOnTmpfsSize = "2g";
   security.doas.enable = true;
   security.sudo.enable = true;
-
-  # @adi-g15 nftables naya wala h, usko enable krke firewall disable krna hoga
-  networking.nftables.enable = true;
-  networking.networkmanager.firewallBackend = "nftables";
-  networking.firewall.enable = false;
-  networking.hostName = "adityag409da"; # Define your hostname.
-  networking.networkmanager.enable = true;
 
   # @adi-g15 neovim
   environment.variables.EDITOR = "nvim";
@@ -83,10 +69,6 @@
 
   # Set your time zone
   time.timeZone = "Asia/Kolkata";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";

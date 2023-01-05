@@ -122,7 +122,6 @@
       lightly-qt
       lynx
       man-pages # Linux dev manual pages
-      mlocate
       neofetch
       neovim
       office-code-pro
@@ -141,7 +140,11 @@
 
   # stdenv = pkgs.clangStdenv;
 
-  services.locate.enable = true;
+  services.locate = {
+    enable = true;
+    locate = pkgs.mlocate;
+    localuser = null;
+  };
 
   # https://libreddit.tiekoetter.com/r/NixOS/comments/w1jqd3/ive_made_some_changes_to_etcconfigurationnix/ihpwzen
 #  system.nixos.label = (lib.maybeEnv "NIXOS_LABEL"

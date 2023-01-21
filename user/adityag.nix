@@ -10,6 +10,7 @@
     ./home-manager/git.nix
     ./home-manager/kdeconnect.nix
     ./home-manager/redshift.nix
+    ./home-manager/vscode.nix
     ./home-manager/zsh.nix
     ./home-manager/configs.nix
   ];
@@ -25,6 +26,7 @@
 
   home-manager.users.adityag = { config, pkgs, ... }: {
     home.packages = with pkgs; [
+      #android-tools
       anydesk
       #arduino-cli
       bibata-cursors
@@ -37,6 +39,7 @@
       gparted
       #google-cloud-sdk
       google-drive-ocamlfuse
+      home-manager
       killall
       nodejs-16_x           # for nvim, copilot
       python3
@@ -45,8 +48,8 @@
       #rmlint
       #rustup
       teams
+      transmission-qt
       trash-cli
-      vscodium
       #vim-plug
       #vimPlugins.vim-plug
  
@@ -66,6 +69,8 @@
     deny adityag as root cmd rm args -rf
     deny adityag as root cmd rm args -r
   '';
+
+  # FUTURE: for customising firefox, see https://github.com/NixOS/nixpkgs/blob/3d9c0b6bdb5d6ee7126b6362167550c74590d612/nixos/modules/programs/firefox.nix#L39-L66
 }
 
 # ex: shiftwidth=2 expandtab: 

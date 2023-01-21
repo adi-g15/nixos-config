@@ -7,7 +7,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./system/networking.nix
-      ./system/printing.nix
       ./system/systemd/main.nix
       ./system/unbound.nix
       ./system/sddm.nix
